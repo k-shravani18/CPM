@@ -1,0 +1,51 @@
+#tableborder {
+    border-collapse: separate;
+    border-spacing: 0 12px;
+}
+
+
+#table {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.rating {
+    display: flex;
+    /* flex-wrap: wrap;*/
+}
+
+.emoji {    
+    margin-right: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #cbcaca; /* #f3f4fe */
+}
+.emoji:nth-child(3){
+    font-weight: bold;
+}
+.emoji:last-child{
+    margin-right: 0px !important;
+}
+.emoji_grey{
+    color: #78716c; /* #a8a29e; */
+}
+
+.emoji.disabled {
+    opacity: 0.5;
+}
+.emoji_red{
+    color:#af1e23;
+}
+.emoji_orange {
+    color: #fa5a7d;
+}
+.emoji_yellow{
+    color:#ff947a;
+}
+.emoji_lime{
+    color:#c58eff;
+}
+
+.emoji_green{
+    color:#3cd856;
+}

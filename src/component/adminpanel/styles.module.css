@@ -1,0 +1,34 @@
+.loading-overlay{
+  position: fixed; /* Position the overlay relative to the viewport */
+top: 0;
+left: 0;
+width: 100%; /* Cover the entire viewport width */
+height: 100%; /* Cover the entire viewport height */
+background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 999;
+}
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0); /* Transparent black background */
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 5px solid #f3f3f3; /* Light gray border */
+    border-top: 5px solid #3498db; /* Blue border on top */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Rotate animation */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

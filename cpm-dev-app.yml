@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cpm-dev
+  name: cpm-dev
+  namespace: cpm-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpm-dev
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cpm-dev
+    spec:
+      containers:
+      - image: 10.1.80.162:8082/abgrepo/cpm-dev:latest
+        name: cpm-dev
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: my-cs
+  name: my-cs
+spec:
+  ports:
+  - name: cpm-dev
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: my-cs
+  type: ClusterIP
+status:
+  loadBalancer: {}

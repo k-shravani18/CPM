@@ -1,0 +1,22 @@
+<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g clip-path="url(#clip0_1965_10872)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11 0C4.93281 0 0 4.93281 0 11C0 17.0672 4.93281 22 11 22C17.0672 22 22 17.0672 22 11C22 4.93281 17.0672 0 11 0Z" fill="#4BAE4F"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.3196 7.29177C16.586 7.55818 16.586 7.99646 16.3196 8.26287L9.87427 14.7082C9.74107 14.8414 9.56489 14.9101 9.38872 14.9101C9.21255 14.9101 9.03638 14.8414 8.90317 14.7082L5.68052 11.4855C5.41411 11.2191 5.41411 10.7808 5.68052 10.5144C5.94692 10.248 6.38521 10.248 6.65161 10.5144L9.38872 13.2515L15.3485 7.29177C15.6149 7.02107 16.0532 7.02107 16.3196 7.29177Z" fill="white"/>
+<g clip-path="url(#clip1_1965_10872)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11 0C4.93281 0 0 4.93281 0 11C0 17.0672 4.93281 22 11 22C17.0672 22 22 17.0672 22 11C22 4.93281 17.0672 0 11 0Z" fill="#FC000F"/>
+<rect x="5" y="5" width="13" height="12" fill="url(#pattern0)"/>
+</g>
+</g>
+<defs>
+<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_1965_10872" transform="matrix(0.0384615 0 0 0.0416667 0 -0.0416667)"/>
+</pattern>
+<clipPath id="clip0_1965_10872">
+<rect width="22" height="22" fill="white"/>
+</clipPath>
+<clipPath id="clip1_1965_10872">
+<rect width="22" height="22" fill="white"/>
+</clipPath>
+<image id="image0_1965_10872" width="26" height="26" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAr0lEQVR4nO3V0QqDIBiG4WDt8naPi8iTvLC2YOcdvUNWTBjpZzIp6Dvt1ydF/avqzCED3IAX0AC1UF8DLfBwY1OQiW/6EMYHcTVLJgkDRm9QEOMXWfJUILddxDDWEZe7Al2AbmUCC1znGhOqiULC3/aRb9HDk7KyvJVkYHYzkoDZbMSDTInVmL9uHTqyHStyvBEuo3KpSz1BbalHddhPm/CwYW5mauNrXHuQkTO7yxsOB36v5R3PSgAAAABJRU5ErkJggg=="/>
+</defs>
+</svg>

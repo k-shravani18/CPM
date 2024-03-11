@@ -1,0 +1,13 @@
+.progress_bar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background:
+      radial-gradient(closest-side, white 79%, transparent 80% 100%),
+      conic-gradient(green 75%, pink 0);
+  }
+  .dashborshow{
+    background-image: url(../../../../public/images/dashborddetals.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
