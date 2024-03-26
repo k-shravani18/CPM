@@ -12,7 +12,7 @@ interface InstanceDetailsProps {
 }
 
 const Vmdetails = ({
-  isInstanceValue,
+  isInstanceValue, 
   cloudValue,
   applicationValue, onInstanceSelect,setSelectedItems// selectInstaceWholeDeatils
 }: InstanceDetailsProps) => {

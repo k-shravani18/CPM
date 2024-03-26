@@ -24,7 +24,3 @@ export class KafkaUtils {
       return this.consumerInstances[topic];
     }
   }
-
-
-
-

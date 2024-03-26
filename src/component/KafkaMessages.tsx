@@ -13,15 +13,15 @@ export default function KafkaMessages() {
     console.log("after use effect and before connecting to the socket");
     const socket = io("http://localhost:3001");
 
-
     try {
-      console.log("connection made");
-
-
-      socket.on("kafka-message", (message: string) => {
-        // Specify string as the type for the message
+      // Listen for messages from first consumer
+      socket.on("kafka-message-demo", (message: string) => {
         setMessages((prevMessages: string[]) => [...prevMessages, message]);
-        console.log("setting the message");
+      });
+
+      // Listen for messages from second consumer
+      socket.on("kafka-message-create", (message: string) => {
+        setMessages((prevMessages: string[]) => [...prevMessages, message]);
       });
     } catch (error) {
       console.error(error);

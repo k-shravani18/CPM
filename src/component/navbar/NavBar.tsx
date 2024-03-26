@@ -17,8 +17,8 @@ const Navbar = ({
   handleCloudChange,
   handleApplicationChange,
   allData,
-  //notification
-}: any) => {
+}: //notification
+any) => {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
   const [isSearchDropdownVisible, setSearchDropdownVisible] = useState(false);
 
@@ -30,9 +30,44 @@ const Navbar = ({
     setSidebarVisible(!isSidebarVisible);
   };
   // const [notification, setNotification] = useState([]);
-  // const [notification, setNotification] = useState<any[]>([]); // Change here
+  const [notification, setNotification] = useState<any[]>([]); // Change here
 
   const [error, setError] = useState("");
+  useEffect(() => {
+    const getKafka = async () => {
+      try {
+        const response = await fetch(`/api/v2/kafka`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then((response) => {
+          //console.log(typeof response);
+          if (response.status === 200) {
+            return response.json().then((responseData) => {
+              // console.log(responseData.message);
+              // Remove duplicates using Set
+              const uniqueNotification = [...new Set(responseData.message)];
+              // console.log("uniqueNotification");
+              //console.log(typeof uniqueNotification);
+              setNotification(uniqueNotification);
+            });
+          } else {
+            setError("internal server error");
+          }
+        });
+      } catch (error) {
+        console.error("Login failed:", error);
+      }
+    };
+    //getKafka();
+    const interval = setInterval(() => {
+      getKafka();
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [notification]);
+  console.log(notification);
+
   // useEffect(() => {
   //   const getKafka = async () => {
   //     try {
@@ -62,36 +97,38 @@ const Navbar = ({
   //   getKafka();
   // }, []);
 
-
-  // const [isDropdownVisible, setDropdownVisible] = useState(false);
-  // const notifications = notification;
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const notifications = notification;
   //["Notification 1", "Notification 2", "Notification 3"];
 
-  // const toggleDropdown = () => {
-  //   setDropdownVisible(!isDropdownVisible);
-  // };
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
 
   // Use useRef to store a reference to the dropdown element
-  // const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event: MouseEvent) => {
-  //     // Use the non-null assertion here
-  //     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-  //       setDropdownVisible(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Use the non-null assertion here
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownVisible(false);
+      }
+    };
 
-  //   document.addEventListener("click", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
-  //   return () => {
-  //     document.removeEventListener("click", handleClickOutside);
-  //   };
-  // }, [isDropdownVisible]);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isDropdownVisible]);
 
   const sortedItems = [...allData];
   const vmdetails: Instances[] = reduceFunction(sortedItems);
-  
+
   const [filteredData, setFilteredData] = useState<Instances[]>(vmdetails);
   const applicationName = filteredData.map(
     (data: any, index: number) => data.applicationname
@@ -195,10 +232,10 @@ const Navbar = ({
             <div className=" ">
               <BsQuestionCircle size={18} />
             </div>
-            <div className="cursor-pointer"> 
-            {/* onClick={toggleDropdown} > */}
+            <div className="cursor-pointer" onClick={toggleDropdown}>
+              {/* onClick={toggleDropdown} > */}
               <BsBell size={18} />
-               {/* {notifications.length > 0 && (
+              {/* {notifications.length > 0 && (
                 <span className="bg-red-500 border border-solid border-black text-white rounded-full px-1 absolute bottom-2 left-10 text-xs">
                   {notifications.length}
                 </span>
@@ -246,7 +283,6 @@ const Navbar = ({
               </div>
             </div>
           </div>
-
         ) : (
           <div className="w-full bg-white h-12 py-2 px-5 flex justify-between ">
             <div className="flex gap-3 items-center">
@@ -267,8 +303,8 @@ const Navbar = ({
               <div className=" ">
                 <BsQuestionCircle size={18} />
               </div>
-              <div className="cursor-pointer"> 
-              {/* onClick={toggleDropdown}> */}
+              <div className="cursor-pointer" onClick={toggleDropdown}>
+                {/* onClick={toggleDropdown}> */}
                 <BsBell size={18} />
                 {/* {notifications.length > 0 && (
                   <span className="bg-red-500 border border-solid border-black text-white rounded-full px-1 absolute bottom-3.5 ml-2 text-xs">
@@ -277,24 +313,29 @@ const Navbar = ({
                 )} */}
               </div>
 
-              {/* {isDropdownVisible && (
-                <div ref={dropdownRef} className="absolute right-0 mt-[143px] bg-white border border-gray-300 rounded-md shadow-lg w-64 h-[100px] overflow-y-auto">
-                    <ul className="">
-                  {notifications.length <= 0 ? (
-                    <li className="px-4 py-2 mb-1 cursor-pointer bg-gray-100">
-                      No notifications
-                    </li>
-                  ) : (
-                    notifications.map((notification: any, index: number) => (
-                      <li key={index} className="px-4 py-2 mb-1 bg-gray-100 cursor-pointer">
-                        {notification}
+              {isDropdownVisible && (
+                <div
+                  ref={dropdownRef}
+                  className="absolute right-0 mt-[143px] bg-white border border-gray-300 rounded-md shadow-lg w-64 h-[100px] overflow-y-auto"
+                >
+                  <ul className="">
+                    {notifications.length <= 0 ? (
+                      <li className="px-4 py-2 mb-1 cursor-pointer bg-gray-100">
+                        No notifications
                       </li>
-                    ))
-                  )}
-                
+                    ) : (
+                      notifications.map((notification: any, index: number) => (
+                        <li
+                          key={index}
+                          className="px-4 py-2 mb-1 bg-gray-100 cursor-pointer"
+                        >
+                          {notification.topic}+" "+{notification.value}
+                        </li>
+                      ))
+                    )}
                   </ul>
                 </div>
-              )} */}
+              )}
             </div>
           </div>
         )}
@@ -305,5 +346,3 @@ const Navbar = ({
 };
 
 export default Navbar;
-
-

@@ -8,14 +8,11 @@ import React from "react";
 async function sendMessage(formData: FormData) {
   "use server";
 
-
   const message = formData.get("message");
-
 
   // Check if message is not null before proceeding
   if (typeof message === "string") {
     const producer = KafkaUtils.getProducerInstance("demo");
-
 
     try {
       await producer.start();
